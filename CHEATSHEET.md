@@ -3,6 +3,10 @@
 Everything from Day 1 on one page. Keep it open in a second tab.
 Every snippet here is valid and copy-pasteable.
 
+A few sections are marked **Day 2**. They are here so the page is complete, and
+because you may want them if you finish the capstone early. You do not need them
+for today.
+
 ---
 
 ## The shape of a workflow
@@ -137,6 +141,9 @@ A fresh virtual machine per job, thrown away when the job ends.
 ---
 
 ## Contexts: reading facts inside a workflow
+> **Day 2.** Here so you have it, and for the last requirement of the capstone.
+> Not something you were taught today, so do not worry if it looks unfamiliar.
+
 
 Anything inside `${{ }}` is an expression.
 
@@ -164,6 +171,9 @@ Dump everything to find a field name:
 ---
 
 ## Variables and secrets
+> **Day 2.** Here so you have it, and for the last requirement of the capstone.
+> Not something you were taught today, so do not worry if it looks unfamiliar.
+
 
 | | Where you set it | How you read it | In the logs |
 |---|---|---|---|
@@ -200,6 +210,9 @@ jobs:
 **Single quotes for strings.** Double quotes are not valid inside `${{ }}`.
 
 ### Status functions
+> **Day 2.** Here so you have it, and for the last requirement of the capstone.
+> Not something you were taught today, so do not worry if it looks unfamiliar.
+
 
 | Function | Runs when |
 |---|---|
@@ -221,6 +234,9 @@ jobs:
 ---
 
 ## Writing a summary a human can read
+> **Day 2.** Here so you have it, and for the last requirement of the capstone.
+> Not something you were taught today, so do not worry if it looks unfamiliar.
+
 
 `$GITHUB_STEP_SUMMARY` is a file. Anything you append renders as Markdown on the
 run page.
