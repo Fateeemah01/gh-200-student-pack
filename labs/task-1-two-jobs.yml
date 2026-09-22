@@ -1,0 +1,32 @@
+# Task 1: two jobs, one file, one trap.
+#
+# This workflow is MEANT to fail. Job "two" cannot read the file job "one"
+# wrote, because every job gets its own brand new virtual machine and job
+# one's machine is thrown away when it finishes.
+#
+# Adding "needs: one" to job two fixes the ORDER and still does not fix the
+# file. Ordering and sharing files are two different problems. Sharing files
+# between jobs needs artifacts, which is Day 2.
+
+name: Task 1 - two jobs, one file
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write a file
+        run: echo "A" > note.txt
+
+      - name: Read it back, same machine, works fine
+        run: cat note.txt
+
+  two:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Try to read the file job one wrote
+        run: cat note.txt
