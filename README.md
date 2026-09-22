@@ -1,10 +1,17 @@
 # GH-200 student pack
 
-**Automate your workflow with GitHub Actions.** Slide decks for the class.
+**Automate your workflow with GitHub Actions.** Day 1.
 
-## Day 1
+## Start here
 
-[`GH-200-Day-1-slides.pdf`](GH-200-Day-1-slides.pdf) — 39 slides.
+| | |
+|---|---|
+| **[CHEATSHEET.md](CHEATSHEET.md)** | Every bit of syntax from today on one page. Keep it open in a second tab. |
+| [GH-200-Day-1-slides.pdf](GH-200-Day-1-slides.pdf) | The deck, 39 slides |
+| [labs/](labs/) | Files to copy into your own repo |
+| [labs/capstone/](labs/capstone/) | The end-of-day team task |
+
+## The day
 
 | Time | Part |
 |------|------|
@@ -12,14 +19,21 @@
 | 09:30 | 1. Fundamentals |
 | 11:15 | 2. Workflows, jobs and runners |
 | 14:00 | 3. Variables and contexts |
-| 16:00 | Plan tomorrow |
+| 16:00 | Capstone: build the gate |
 
 Day 1 stops at workflows, actions and runners. Artifacts, caching, concurrency,
-environments and reuse are Day 2, along with the Terraform pipeline.
+environments and reuse are Day 2.
 
-## Source material
+## The three things worth remembering
 
-Everything here follows the GitHub docs. The two pages worth bookmarking:
+1. **Every job is a brand new machine.** Nothing on disk survives between jobs.
+2. **A workflow reports. A branch protection rule enforces.** They are not the
+   same thing, and only one of them stops a merge.
+3. **The first red step is the cause.** `Process completed with exit code 1` is
+   the symptom, and the real error is the line above it.
 
+## If you get stuck
+
+- [CHEATSHEET.md](CHEATSHEET.md) first, it covers everything we did.
 - [Understanding GitHub Actions](https://docs.github.com/en/actions/get-started/understand-github-actions)
-- [Workflows](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows)
+- [Workflow syntax reference](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
