@@ -10,9 +10,14 @@
 | [GH-200-Day-1-slides.pdf](GH-200-Day-1-slides.pdf) | The deck, 32 slides |
 | [labs/](labs/) | Files to copy into your own repo |
 | [labs/capstone/](labs/capstone/) | The Day 1 team task, solved step by step at the start of Day 2 |
-| [GH-200-Day-2-slides.pdf](GH-200-Day-2-slides.pdf) | Day 2, 71 slides. Every task is followed by its answers. **The cheatsheet is the last five pages** |
+| [GH-200-Day-2-slides.pdf](GH-200-Day-2-slides.pdf) | Day 2, 46 slides. **The cheatsheet is the last three pages** |
 
-## Day 2 labs
+## Day 2: the build
+
+Today you deploy your team's own copy of an app to your own URL.
+**Start here: [github.com/Greyisheep/gh-200-team-app](https://github.com/Greyisheep/gh-200-team-app)**, click *Use this template*, then follow its **LAB.md**.
+
+## Extra practice (not used in class)
 
 | Folder | Task |
 |---|---|
