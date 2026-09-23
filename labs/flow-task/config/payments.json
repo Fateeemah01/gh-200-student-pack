@@ -1,0 +1,5 @@
+{
+  "name": "payments",
+  "enabled": true,
+  "retries": 3
+}

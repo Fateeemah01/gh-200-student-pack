@@ -1,0 +1,30 @@
+# Final task: make it production grade.
+# This is a small team's real first pipeline. It works. Every push, from every
+# branch, goes straight to the production server. There are at least fifteen
+# problems. List them first, then rewrite the file.
+# (203.0.113.10 is a documentation address. There is no server.)
+name: deploy
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "Deploying ${{ github.event.head_commit.message }}"
+      - uses: appleboy/ssh-action@master
+        with:
+          host: 203.0.113.10
+          username: root
+          password: Sup3rS3cret!
+          script: |
+            cd /srv/app
+            git pull
+            npm install
+            npm run migrate
+            pm2 restart app

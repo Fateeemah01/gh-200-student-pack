@@ -347,3 +347,78 @@ jobs:
 | Run workflow button missing | File is not on your default branch yet |
 | No Actions tab at all | Actions is disabled in Settings |
 | Weird YAML error you cannot see | A tab character, or odd indentation |
+
+
+---
+
+# Day 2 additions
+
+The full Day 2 cheatsheet is the last five pages of `GH-200-Day-2-slides.pdf`.
+These are the parts people asked about most.
+
+## From a sentence to a file
+
+1. Write the sentence: **when, where, how many, what steps, who enforces**.
+2. Draw one box per answer.
+3. One key per box: `on`, `runs-on`, `strategy`, `steps`. Box 5 is **Settings, Rules**.
+4. Save as `.github/workflows/name.yml` on a branch, open a pull request.
+5. Read the run: did it run when, where, and as many times as you expected?
+
+## Passing a value to another job
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      build_id: ${{ steps.build_step.outputs.build_id }}   # 3. the job publishes it
+    steps:
+      - id: build_step                                       # 2. the step needs an id
+        run: echo "build_id=$RANDOM" >> "$GITHUB_OUTPUT"     # 1. the step writes it
+  deploy:
+    needs: build                                             # 4. needs gives access
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying ${{ needs.build.outputs.build_id }}"
+```
+
+`build_step` and `build_id` are names **you** chose. GitHub has no idea what a
+build ID is. They only have to match where they are set and where they are read.
+
+## Reading a chain
+
+Left to right, like a folder path. At each dot ask "which one?"
+
+| Chain | Say it as |
+|---|---|
+| `steps.build_step.outputs.build_id` | the step with id build_step, its output build_id |
+| `needs.build.outputs.build_id` | the job I need called build, its published output build_id |
+| `needs.build.result` | did the job build succeed, fail, or get skipped |
+| `matrix.os` | this copy's value of os |
+| `github.event.pull_request.title` | the event, the pull request, its title (untrusted text) |
+
+## Two dollar signs
+
+| | `${{ x }}` | `$X` |
+|---|---|---|
+| Who reads it | GitHub, before the step runs | The shell, while it runs |
+| Sees | Contexts: github, steps, needs, vars, secrets | Environment variables |
+| Wrong name | Empty string, no error | Empty string, no error |
+
+Untrusted text (titles, branch names, commit messages) goes through `env:` and
+is read as `$X`, never pasted into `run:` with `${{ }}`.
+
+## Where to click
+
+| You want to | Go to |
+|---|---|
+| Add a secret | Settings, Secrets and variables, Actions, New repository secret |
+| Add a variable | Same page, Variables tab |
+| Gate a deploy on a person | Settings, Environments, New environment, Required reviewers |
+| Block red merges | Settings, Rules, New branch ruleset, Require status checks to pass |
+| Limit which actions run | Settings, Actions, General |
+
+## Quote these in YAML
+
+`'3.10'` (or it becomes 3.1), cron strings like `'0 2 * * *'`, anything starting
+with `*` or `@`.
